@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for("static", filename="background/background.jpeg") }}');
+            background-size: cover; /* Ensure the background covers the entire body */
+            background-position: center top; /* Center the background image at the top */
+            color: black; /* Change text color to black */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Set body height to full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        #todo-container {
+            background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+            max-width: 600px; /* Limit the width of the to-do container for better readability */
+            width: 100%; /* Ensure the container takes the full width */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo-container">
+        <h1>Todo List App</h1>
+
+        <form action="/add_task" method="post">
+            <label for="task">Add Task:</label>
+            <input type="text" id="task" name="content" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <h2>Tasks:</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
